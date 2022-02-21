@@ -1,4 +1,4 @@
-package com.jwt.repository;
+package com.jwt.practice.repository;
 
 import com.jwt.practice.model.User;
 import org.springframework.data.jpa.repository.JpaRepository;
