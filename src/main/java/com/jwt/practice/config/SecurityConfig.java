@@ -2,6 +2,7 @@ package com.jwt.practice.config;
 
 import com.jwt.practice.filter.MyFilter1;
 import com.jwt.practice.filter.MyFilter3;
+import com.jwt.practice.jwt.JwtAuthenticationFilter;
 import lombok.RequiredArgsConstructor;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
@@ -27,6 +28,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                 .addFilter(corsFilter)  // 내 서버는 crossOrigin 요청이 와도 허용이 된다.
                 .formLogin().disable() // formLogin 사용 x
                 .httpBasic().disable() // 기본적인 http 로그인 방식 사용 x - jwt용 세팅
+                .addFilter(new JwtAuthenticationFilter(authenticationManager())) // authenticationManager 필요
                 .authorizeRequests()
                 .antMatchers("/api/v1/user/**")
                 .access("hasRole('ROLE_USER') or hasRole('ROLE_MANAGER') or hasRole('ROLE_ADMIN')")
