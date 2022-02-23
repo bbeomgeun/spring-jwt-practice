@@ -23,5 +23,6 @@ public class MyFilter3 implements Filter {
                 writer.println("인증 안됨");
             }
         }
+        chain.doFilter(request, response);
     }
 }
